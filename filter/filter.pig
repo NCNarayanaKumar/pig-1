@@ -1,5 +1,5 @@
 A = load '/data/pig/filter/data.txt' using PigStorage(',') ; 
-B = FILTER A by (chararray)$0 =='SFAX';
+B = FILTER A by (((chararray)$0 =='SFAX') or ((chararray)$0 =='TUNIS'));
 generatedB = FOREACH B GENERATE (chararray)$0 as depart, (chararray)$1 as destination,(chararray)$2 as avion , (int)$3 as retard;
 describe  generatedB ; 
 groupby_avion = group generatedB by avion; 
